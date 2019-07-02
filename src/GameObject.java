@@ -5,7 +5,7 @@ int x;
 int y;
 int width;
 int height;
-int spped = 0;
+int speed = 0;
 Rectangle collisionBox;
 
 

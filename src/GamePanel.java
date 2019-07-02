@@ -1,5 +1,3 @@
-
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -27,7 +25,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Font over3;
 	Font over4;
 	Timer frameDraw;
-	Ball ball = new Ball(250, 500, 50, 50);
+	Ball ball = new Ball(250, 500, 20, 20);
+	Paddle1 paddle1 = new Paddle1(5, 320, 10, 100);
+	Paddle2 paddle2 = new Paddle2(788, 320, 10, 100);
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
@@ -54,13 +54,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		frameDraw = new Timer(1000/60, this);
 		frameDraw.start();
 	}
-	
 	void updateMenuState() {	}
 	void updateGameState() {
 		
 	}
 	void updateEndState() {		}
-	
 	void drawMenuState(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
@@ -79,6 +77,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
 		ball.draw(g);
+		paddle1.draw(g);
+		paddle2.draw(g);
 	}
 	void drawEndState(Graphics g)  { 
 		g.setColor(Color.black);
@@ -115,40 +115,52 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			if(currentState == MENU) {
-				currentState = GAME;
-			}
-			if(currentState == GAME) {
-				currentState = END;
-			}
 			if(currentState == END) {
 				currentState = MENU;
 				//make new objects
 			}
+			else if(currentState == MENU) {
+				currentState = GAME;
+			}
+			else if(currentState == GAME) {
+				currentState = END;
+			}
 		}
 		else if (e.getKeyCode() ==KeyEvent.VK_UP) {
 			System.out.println("UP");
-			
+			paddle1.up();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("DOWN");
-			
+			paddle1.down();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("RIGHT");
-			
+			paddle1.right();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("LEFT");
-			
+			paddle1.left();
 		}
-
+		
+		else if(e.getKeyCode() == KeyEvent.VK_A) {
+			paddle2.left();
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_D) {
+			paddle2.right();
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_W) {
+			paddle2.up();
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_S) {
+			paddle2.down();
+		}
+		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -161,7 +173,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		}else if(currentState == END){
 		    updateEndState();
 		}
-		System.out.println("action");
+		//System.out.println("action");
 		repaint();
 	}
 

@@ -1,15 +1,18 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends GameObject{
+public class Paddle2 extends GameObject{
 
-	public Ball(int x, int y, int width, int height) {
+	public Paddle2(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 10;
 	}
-
-	/*public void up() {
+	void draw(Graphics g) {
+		g.setColor(Color.white);
+		g.fillRect(x, y, width, height);
+	}
+	public void up() {
 		y-=speed;
 		if(y <0) {
 			y = 1;
@@ -32,10 +35,9 @@ public class Ball extends GameObject{
 		if(x > 800) {
 			x = 799;
 		}
-	}*/
+	}
 	
-	void draw(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fillRect(x, y, width, height);
+	public void update() {
+		
 	}
 }
