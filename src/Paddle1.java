@@ -41,6 +41,5 @@ public class Paddle1 extends GameObject{
 	public void update() {
 		
 	}
-	
-	
+
 }

@@ -9,33 +9,12 @@ public class Ball extends GameObject{
 		speed = 10;
 	}
 
-	/*public void up() {
-		y-=speed;
-		if(y <0) {
-			y = 1;
-		}
-	}
-	public void down() {
-		y+=speed;
-		if(y > 650) {
-			y = 649;
-		}
-	}
-	public void left() {
-		x-=speed;
-		if(x < 0) {
-			x = 2;
-		}
-	}
-	public void right() {
-		x+=speed;
-		if(x > 800) {
-			x = 799;
-		}
-	}*/
-	
 	void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
+	}
+	
+	public void update() {
+	//need something?	
 	}
 }
