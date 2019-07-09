@@ -24,10 +24,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Font over2;
 	Font over3;
 	Font over4;
-	Timer frameDraw;
+	Timer frameDraw;	
 	Ball ball = new Ball(250, 500, 20, 20);
 	Paddle1 paddle1 = new Paddle1(5, 320, 10, 100);
 	Paddle2 paddle2 = new Paddle2(788, 320, 10, 100);
+	ObjectManager manager = new ObjectManager(paddle1, paddle2);
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
@@ -56,7 +57,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	}
 	void updateMenuState() {	}
 	void updateGameState() {
-		
+		manager.update();
 	}
 	void updateEndState() {		}
 	void drawMenuState(Graphics g) {
@@ -77,8 +78,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
 		ball.draw(g);
-		paddle1.draw(g);
-		paddle2.draw(g);
+		manager.draw(g);
+		manager.draw(g);
 	}
 	void drawEndState(Graphics g)  { 
 		g.setColor(Color.black);
@@ -115,15 +116,19 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			if(currentState == END) {
-				currentState = MENU;
-				//make new objects
-			}
-			else if(currentState == MENU) {
+			if(currentState == MENU) {
 				currentState = GAME;
 			}
 			else if(currentState == GAME) {
 				currentState = END;
+			}
+			else if(currentState == END) {
+				currentState = MENU;
+				//make new objects
+				/*paddle1 = new Paddle1(5, 320, 10, 100);
+				paddle2 = new Paddle2(788, 320, 10, 100);
+				ball = new Ball(250, 500, 20, 20);
+*/
 			}
 		}
 		else if (e.getKeyCode() ==KeyEvent.VK_UP) {
@@ -141,18 +146,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("LEFT");
 			paddle1.left();
-		}*/
+		}
 		
-		/*else if(e.getKeyCode() == KeyEvent.VK_A) {
+		else if(e.getKeyCode() == KeyEvent.VK_A) {
 			paddle2.left();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_D) {
 			paddle2.right();
 		}*/
 		else if(e.getKeyCode() == KeyEvent.VK_W) {
+			System.out.println("UP");
 			paddle2.up();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_S) {
+			System.out.println("DOWN");
 			paddle2.down();
 		}
 		

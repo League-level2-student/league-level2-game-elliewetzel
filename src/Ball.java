@@ -15,6 +15,8 @@ public class Ball extends GameObject{
 	}
 	
 	public void update() {
-	//need something?	
+		//x = x-=speed; //should go to paddle1 first
+	//need something?
+		super.update();
 	}
 }

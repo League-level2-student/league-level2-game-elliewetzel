@@ -14,14 +14,14 @@ public class Paddle2 extends GameObject{
 	}
 	public void up() {
 		y-=speed;
-		if(y <0) {
+		if(y < 0) {
 			y = 1;
 		}
 	}
 	public void down() {
 		y+=speed;
 		if(y > 650) {
-			y = 649;
+			y = 640;
 		}
 	}
 	public void left() {
@@ -38,7 +38,7 @@ public class Paddle2 extends GameObject{
 	}
 	
 	public void update() {
-		
+		super.update();
 	}
 
 }
