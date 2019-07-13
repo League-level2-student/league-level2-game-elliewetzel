@@ -6,10 +6,12 @@ public class ObjectManager implements ActionListener{
 	Paddle1 pad1;
 	Paddle2 pad2;
 	Ball b = new Ball(250, 500, 20, 20);
-	int score = 0;
+	int score1 = 0;
+	int score2 = 0;
 	
 	public int getScore() {
-		return score;
+		return score1;
+		return score2;
 	}
 	
 	public ObjectManager(Paddle1 pad1, Paddle2 pad2) {
@@ -19,7 +21,7 @@ public class ObjectManager implements ActionListener{
 	
 	
 	public void update() {
-		
+		checkCollision();
 	}
 
 	void draw(Graphics g) {
@@ -35,12 +37,12 @@ public class ObjectManager implements ActionListener{
 	void checkCollision() {
 		// Ball(250, 500, 20, 20);
 		if(b.collisionBox.intersects(pad1.collisionBox)) {
+			b.speed = -b.speed;
 			
 			
-			//	b.y
 		}
 		else if(pad2.collisionBox.intersects(b.collisionBox)) {
-			
+			b.speed = -b.speed;
 		}
 		//else if()
 		

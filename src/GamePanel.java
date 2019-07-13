@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Font over2;
 	Font over3;
 	Font over4;
+	Font over5;
 	Timer frameDraw;	
 	Ball ball = new Ball(250, 500, 20, 20);
 	Paddle1 paddle1 = new Paddle1(5, 320, 10, 100);
@@ -50,10 +51,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		instruction = new Font("Arial", Font.PLAIN, 24);
 		enter = new Font("Arial", Font.PLAIN, 24);
 		over = new Font("Arial", Font.BOLD, 48);
-		over2 = new Font("Arial", Font.PLAIN, 24);
+		over2 = new Font("Arial", Font.BOLD, 24);
 		over3 = new Font("Arial", Font.PLAIN, 24);
 		frameDraw = new Timer(1000/60, this);
 		frameDraw.start();
+		over5 = new Font("Arial", Font.BOLD, 24);
 	}
 	void updateMenuState() {	}
 	void updateGameState() {
@@ -89,7 +91,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.drawString("GAME OVER", 305, 144);
 		g.setFont(over2);
 		g.setColor(Color.GREEN);
-		g.drawString("Your score was " /*+ score*/, 300, 260);  //score is in object manager
+		g.drawString("Player 1's score is " + manager.score1, 290, 230);
+		g.setFont(over5);
+		g.setColor(Color.GREEN);
+		g.drawString("Player 2's score is " + manager.score2, 290, 290);
 		g.setFont(over3);
 		g.setColor(Color.GREEN);
 		g.drawString("Press ENTER to restart", 300, 390);
@@ -101,9 +106,23 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		    drawMenuState(g);
 		}else if(currentState == GAME){
 		    drawGameState(g);
-		}else if(currentState == END){
+		}else {
 		    drawEndState(g);
 		}
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(currentState == MENU){
+		    updateMenuState();
+		}else if(currentState == GAME){
+		    updateGameState();
+		}else if(currentState == END){
+		    updateEndState();
+		}
+		//System.out.println("action");
+		repaint();
 	}
 
 	@Override
@@ -170,18 +189,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(currentState == MENU){
-		    updateMenuState();
-		}else if(currentState == GAME){
-		    updateGameState();
-		}else if(currentState == END){
-		    updateEndState();
-		}
-		//System.out.println("action");
-		repaint();
-	}
+	
 
 }
