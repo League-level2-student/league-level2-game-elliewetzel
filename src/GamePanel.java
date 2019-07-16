@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Ball ball = new Ball(250, 500, 20, 20);
 	Paddle1 paddle1 = new Paddle1(5, 320, 10, 100);
 	Paddle2 paddle2 = new Paddle2(788, 320, 10, 100);
-	ObjectManager manager = new ObjectManager(paddle1, paddle2);
+	ObjectManager manager = new ObjectManager(paddle1, paddle2, ball);
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		titleFont = new Font("Arial", Font.BOLD, 48);
 		instruction = new Font("Arial", Font.PLAIN, 24);
 		enter = new Font("Arial", Font.PLAIN, 24);
-		over = new Font("Arial", Font.BOLD, 48);
+		over = new Font("Arial", Font.BOLD, 51);
 		over2 = new Font("Arial", Font.BOLD, 24);
 		over3 = new Font("Arial", Font.PLAIN, 24);
 		frameDraw = new Timer(1000/60, this);
@@ -60,6 +60,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	void updateMenuState() {	}
 	void updateGameState() {
 		manager.update();
+		ball.direction();
 	}
 	void updateEndState() {		}
 	void drawMenuState(Graphics g) {
@@ -80,24 +81,25 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
 		ball.draw(g);
+		System.out.println(ball.speed);
 		manager.draw(g);
-		manager.draw(g);
+		
 	}
 	void drawEndState(Graphics g)  { 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
 		g.setFont(over);
-		g.setColor(Color.GREEN);
-		g.drawString("GAME OVER", 305, 144);
+		g.setColor(Color.YELLOW);
+		g.drawString("GAME OVER", 285, 144);
 		g.setFont(over2);
 		g.setColor(Color.GREEN);
-		g.drawString("Player 1's score is " + manager.score1, 290, 230);
+		g.drawString("Player 1's score is " + manager.getScore1(), 280, 300);
 		g.setFont(over5);
 		g.setColor(Color.GREEN);
-		g.drawString("Player 2's score is " + manager.score2, 290, 290);
+		g.drawString("Player 2's score is " + manager.getScore2(), 280, 400);
 		g.setFont(over3);
-		g.setColor(Color.GREEN);
-		g.drawString("Press ENTER to restart", 300, 390);
+		g.setColor(Color.YELLOW);
+		g.drawString("Press ENTER to restart", 270, 500);
 	}
 	
 	@Override
@@ -106,7 +108,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		    drawMenuState(g);
 		}else if(currentState == GAME){
 		    drawGameState(g);
-		}else {
+		}else if(currentState == END){
 		    drawEndState(g);
 		}
 	}

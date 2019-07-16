@@ -6,7 +6,7 @@ public class Paddle1 extends GameObject{
 	public Paddle1(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 10;
+		speed = 17;
 	}
 	void draw(Graphics g) {
 		g.setColor(Color.white);
@@ -17,6 +17,7 @@ public class Paddle1 extends GameObject{
 		y-=speed;
 		if(y < 0) {
 			y = 1;
+			
 		}
 	}
 	public void down() {
