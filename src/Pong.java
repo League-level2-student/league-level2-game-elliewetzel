@@ -10,7 +10,7 @@ public class Pong {
 		frame = new JFrame();
 		frame.setSize(800, 650);
 		panel = new GamePanel();
-		frame.addKeyListener(panel);
+		
 	}
 
 	public static void main(String[] args) {

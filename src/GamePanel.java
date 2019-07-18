@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
 		ball.draw(g);
-		System.out.println(ball.speed);
+		//System.out.println(ball.speed);
 		manager.draw(g);
 		
 	}
@@ -137,8 +137,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			System.out.println(currentState);
 			if(currentState == MENU) {
 				currentState = GAME;
+				
 			}
 			else if(currentState == GAME) {
 				currentState = END;
@@ -160,11 +162,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 			System.out.println("DOWN");
 			paddle1.down();
 		}
-		/*else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("RIGHT");
 			paddle1.right();
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		/*else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("LEFT");
 			paddle1.left();
 		}

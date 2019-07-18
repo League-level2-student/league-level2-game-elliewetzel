@@ -1,6 +1,9 @@
+import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JApplet;
 
 public class ObjectManager implements ActionListener{
 	Paddle1 pad1;
@@ -39,18 +42,24 @@ public class ObjectManager implements ActionListener{
 		if(b.collisionBox.intersects(pad1.collisionBox)) {
 			
 			b.speed = -1*b.speed;
-			System.out.println(b.speed);
+			System.out.println("test");
+			playSound("PongBlip.wav");
 			
 		}
 		else if(pad2.collisionBox.intersects(b.collisionBox)) {
 			
-			//b.speed = -b.speed;
+			b.speed = -1*b.speed;
+			System.out.println("test2");
 			
 		}
 		//else if()
 		
 	}
 
+	private void playSound(String fileName) {
+		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
+		sound.play();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

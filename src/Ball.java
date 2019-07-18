@@ -1,22 +1,21 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Ball extends GameObject{
-	boolean left = true;
-	boolean right = false;
-	
+	 Random c ;
 	public Ball(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 5;
-		//x = x+1;
+		
 	}
 
 	
 	void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
-		//direction();
+		
 		/*if(x<=0) {
 			
 			x = x+=speed;
@@ -39,21 +38,13 @@ public class Ball extends GameObject{
 	}
 	
 	void direction() {
-		x = x-=speed;
-		if(left) {
-			if(x<=0) {
-				x = -1 * x;
-				left = false;
-				right = true;
-			}
+		x-=speed;
+		if(x<=0) {
+			speed = -speed;
 		}
-		if(right) {
 			if(x>=800) {
-				x = -1*x;
-				right = false;
-				left = true;
+				speed = -speed;
 			}
-		}
 	}
 	
 	public void update() {
