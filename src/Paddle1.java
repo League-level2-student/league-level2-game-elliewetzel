@@ -7,10 +7,13 @@ public class Paddle1 extends GameObject{
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
 		speed = 17;
+		
 	}
 	void draw(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(x, y, width, height);
+		collisionBox.setBounds(x, y, width, height);
+		drawCollisionBox(g);
 	}
 	
 	public void up() {

@@ -26,10 +26,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Font over4;
 	Font over5;
 	Timer frameDraw;	
-	Ball ball = new Ball(250, 500, 20, 20);
-	Paddle1 paddle1 = new Paddle1(5, 320, 10, 100);
-	Paddle2 paddle2 = new Paddle2(788, 320, 10, 100);
-	ObjectManager manager = new ObjectManager(paddle1, paddle2, ball);
+	/*Ball ball = new Ball(250, 500, 20, 20);
+	Paddle1 paddle1 = new Paddle1(6, 320, 10, 100);
+	Paddle2 paddle2 = new Paddle2(787, 320, 10, 100);*/
+	ObjectManager manager = new ObjectManager();
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	void updateMenuState() {	}
 	void updateGameState() {
 		manager.update();
-		ball.direction();
+
 	}
 	void updateEndState() {		}
 	void drawMenuState(Graphics g) {
@@ -80,7 +80,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	void drawGameState(Graphics g) {  
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
-		ball.draw(g);
 		//System.out.println(ball.speed);
 		manager.draw(g);
 		
@@ -156,17 +155,17 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		}
 		else if (e.getKeyCode() ==KeyEvent.VK_UP) {
 			System.out.println("UP");
-			paddle1.up();
+			manager.paddle1UP();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("DOWN");
-			paddle1.down();
+			manager.paddle1DOWN();
 		}
-		else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		/*else if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("RIGHT");
 			paddle1.right();
 		}
-		/*else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("LEFT");
 			paddle1.left();
 		}
@@ -179,11 +178,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		}*/
 		else if(e.getKeyCode() == KeyEvent.VK_W) {
 			System.out.println("UP");
-			paddle2.up();
+			manager.paddle2UP();
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_S) {
 			System.out.println("DOWN");
-			paddle2.down();
+			manager.paddle2DOWN();
 		}
 		
 	}

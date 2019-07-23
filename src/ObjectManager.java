@@ -8,7 +8,7 @@ import javax.swing.JApplet;
 public class ObjectManager implements ActionListener{
 	Paddle1 pad1;
 	Paddle2 pad2;
-	Ball b = new Ball(250, 500, 20, 20);
+	Ball b;
 	int score1 = 0;
 	int score2 = 0;
 	
@@ -19,14 +19,19 @@ public class ObjectManager implements ActionListener{
 		return score2;
 	}
 	
-	public ObjectManager(Paddle1 pad1, Paddle2 pad2, Ball b) {
-		this.pad1 = pad1;
-		this.pad2 = pad2;
-		this.b = b;
+	public ObjectManager() {
+		this.pad1 = new Paddle1(6, 320, 10, 100);
+		this.pad2 = new Paddle2(787, 320, 10, 100);
+		this.b = new Ball(250, 500, 20, 20);;
+		/*Ball ball = 
+		Paddle1 paddle1 = ;
+		Paddle2 paddle2 = ;*/
 	}
 	
 	
 	public void update() {
+		b.update();
+		
 		checkCollision();
 	}
 
@@ -36,21 +41,34 @@ public class ObjectManager implements ActionListener{
 		b.draw(g);
 	}
 
+	public void paddle1UP() {
+		pad1.up();
+	}
+	public void paddle1DOWN() {
+		pad1.down();
+	}
+	public void paddle2UP() {
+		pad2.up();
+	}
+	public void paddle2DOWN() {
+		pad2.down();
+	}
+	
 	
 	void checkCollision() {
 		
 		if(b.collisionBox.intersects(pad1.collisionBox)) {
-			
-			b.speed = -1*b.speed;
 			System.out.println("test");
+			b.speed = Math.abs(b.speed);
+			
 			playSound("PongBlip.wav");
 			
 		}
-		else if(pad2.collisionBox.intersects(b.collisionBox)) {
-			
-			b.speed = -1*b.speed;
+		else if(b.collisionBox.intersects(pad2.collisionBox)) {
 			System.out.println("test2");
+			b.speed = -(Math.abs(b.speed));
 			
+			playSound("PongBlip.wav");
 		}
 		//else if()
 		
