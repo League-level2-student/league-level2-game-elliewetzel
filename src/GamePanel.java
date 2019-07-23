@@ -60,7 +60,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	void updateMenuState() {	}
 	void updateGameState() {
 		manager.update();
-
 	}
 	void updateEndState() {		}
 	void drawMenuState(Graphics g) {
@@ -80,6 +79,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	void drawGameState(Graphics g) {  
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
+		g.setColor(Color.WHITE);
+		g.fillRect(400, 0, 5, Pong.HEIGHT-1);
 		//System.out.println(ball.speed);
 		manager.draw(g);
 		
@@ -147,10 +148,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 			else if(currentState == END) {
 				currentState = MENU;
 				//make new objects
-				/*paddle1 = new Paddle1(5, 320, 10, 100);
-				paddle2 = new Paddle2(788, 320, 10, 100);
-				ball = new Ball(250, 500, 20, 20);
-*/
+				manager.pad1 = new Paddle1(5, 320, 10, 100);
+				manager.pad2 = new Paddle2(788, 320, 10, 100);
+				manager.b = new Ball(250, 500, 20, 20);
+				manager.score1 = 0;
+				manager.score2 = 0;
 			}
 		}
 		else if (e.getKeyCode() ==KeyEvent.VK_UP) {

@@ -20,9 +20,9 @@ collisionBox = new Rectangle(x, y, width, height);
 }
 
 public void update() {
-	//drawCollisionBox(g);
+	
 	collisionBox.setBounds(x, y, width, height);
-//	System.out.println("" +x+ ", " + y);
+
 }
 
 public void drawCollisionBox(Graphics g) {

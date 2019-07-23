@@ -7,35 +7,30 @@ public class Ball extends GameObject{
 	public Ball(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 2;
+		speed = 3;
 		
 	}
 
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
 	
 	void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
 		collisionBox.setBounds(x, y, width, height);
 		drawCollisionBox(g);
-		/*if(x<=0) {
-			
-			x = x+=speed;
-			//x = -1 * x;
+		 if(y<=1) {
+			speed = -Math.abs(speed);
 		}
-		else if(x>= 800) {
-			
-			x = x-=speed;
-			//x = -1 * x;
+		else if(y>=645) {
+			speed = Math.abs(speed);
 		}
-		else if(y<=0) {
-			
-			y = y+=speed;
-			//y = -1 * y;
-		}
-		else if(y>=650) {
-			y = y-=speed;
-			//y = -1 * y;
-		}*/
 	}
 	
 	void direction() {
@@ -52,7 +47,7 @@ public class Ball extends GameObject{
 		
 	//need something?
 		x+=speed;
-		
+		//y-=speed;
 		super.update();
 	}
 }

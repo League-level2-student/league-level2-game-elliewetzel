@@ -6,7 +6,7 @@ public class Paddle1 extends GameObject{
 	public Paddle1(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 17;
+		speed = 19;
 		
 	}
 	void draw(Graphics g) {

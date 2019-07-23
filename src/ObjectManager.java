@@ -23,12 +23,9 @@ public class ObjectManager implements ActionListener{
 		this.pad1 = new Paddle1(6, 320, 10, 100);
 		this.pad2 = new Paddle2(787, 320, 10, 100);
 		this.b = new Ball(250, 500, 20, 20);;
-		/*Ball ball = 
-		Paddle1 paddle1 = ;
-		Paddle2 paddle2 = ;*/
+		
 	}
-	
-	
+
 	public void update() {
 		b.update();
 		
@@ -58,20 +55,21 @@ public class ObjectManager implements ActionListener{
 	void checkCollision() {
 		
 		if(b.collisionBox.intersects(pad1.collisionBox)) {
-			System.out.println("test");
+			//System.out.println("test");
 			b.speed = Math.abs(b.speed);
-			
 			playSound("PongBlip.wav");
-			
 		}
 		else if(b.collisionBox.intersects(pad2.collisionBox)) {
-			System.out.println("test2");
+			//System.out.println("test2");
 			b.speed = -(Math.abs(b.speed));
-			
 			playSound("PongBlip.wav");
 		}
-		//else if()
-		
+		else if(b.getX() == 0) {
+			score2++;
+		}
+		else if(b.getX() == 800) {
+			score1++;
+		}
 	}
 
 	private void playSound(String fileName) {
