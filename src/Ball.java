@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.util.Random;
 
 public class Ball extends GameObject{
-	 Random c ;
+	int speedy = 0;
 	public Ball(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
@@ -15,6 +15,7 @@ public class Ball extends GameObject{
 	public int getX() {
 		return x;
 	}
+	 /*need to put in speed increments depending on score, and if someone reaches 16 points make it game over*/
 	
 	public int getY() {
 		return y;
@@ -26,12 +27,13 @@ public class Ball extends GameObject{
 		collisionBox.setBounds(x, y, width, height);
 		drawCollisionBox(g);
 		 if(y<=1) {
-			speed = -Math.abs(speed);
+			speedy = Math.abs(speedy);
 		}
-		else if(y>=645) {
-			speed = Math.abs(speed);
+		else if(y>=630) {
+			speedy = -Math.abs(speedy);
 		}
 	}
+	
 	
 	void direction() {
 		//x-=speed;
@@ -47,7 +49,8 @@ public class Ball extends GameObject{
 		
 	//need something?
 		x+=speed;
-		//y-=speed;
+		y+=speedy;
+		
 		super.update();
 	}
 }

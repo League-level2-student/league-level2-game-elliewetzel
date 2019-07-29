@@ -9,6 +9,15 @@ public class Paddle2 extends GameObject{
 		speed = 19;
 		
 	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
 	void draw(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(x, y, width, height);

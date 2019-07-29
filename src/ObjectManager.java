@@ -58,17 +58,48 @@ public class ObjectManager implements ActionListener{
 			//System.out.println("test");
 			b.speed = Math.abs(b.speed);
 			playSound("PongBlip.wav");
+			
+			System.out.println(b.getY()-pad1.getY());
+			System.out.println(pad1.getY());
+			
+			if(b.getY() - pad1.getY() <= 33) {
+				b.speedy = -3;
+			}
+			else if(b.getY() - pad1.getY() > 33 && b.getY()-pad1.getY() <= 66) {
+				b.speedy = 0;
+			}
+			else {
+				b.speedy = 3;
+			}
+			
+			//b.y+=b.speed;
 		}
 		else if(b.collisionBox.intersects(pad2.collisionBox)) {
 			//System.out.println("test2");
 			b.speed = -(Math.abs(b.speed));
 			playSound("PongBlip.wav");
+			
+			if(b.getY() - pad2.getY() <= 33) {
+				b.speedy = -3;
+			}
+			else if(b.getY() - pad2.getY() > 33 && b.getY()-pad2.getY() <= 66) {
+				b.speedy = 0;
+			}
+			else {
+				b.speedy = 3;
+			}
 		}
-		else if(b.getX() == 0) {
+		else if(b.getX() <= 0) {
 			score2++;
+			b.x = 400;
+			b.y = 325;
+			b.speed = -b.speed;
 		}
-		else if(b.getX() == 800) {
+		else if(b.getX() >= 800) {
 			score1++;
+			b.x = 400;
+			b.y = 325;
+			b.speed = -b.speed;
 		}
 	}
 
