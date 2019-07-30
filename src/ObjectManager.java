@@ -21,7 +21,7 @@ public class ObjectManager implements ActionListener{
 	
 	public ObjectManager() {
 		this.pad1 = new Paddle1(6, 320, 10, 100);
-		this.pad2 = new Paddle2(787, 320, 10, 100);
+		this.pad2 = new Paddle2(784, 320, 10, 100);
 		this.b = new Ball(250, 500, 20, 20);;
 		
 	}
@@ -64,15 +64,38 @@ public class ObjectManager implements ActionListener{
 			
 			if(b.getY() - pad1.getY() <= 33) {
 				b.speedy = -3;
+				System.out.println(b.speed);
 			}
 			else if(b.getY() - pad1.getY() > 33 && b.getY()-pad1.getY() <= 66) {
 				b.speedy = 0;
+				System.out.println(b.speed);
 			}
 			else {
 				b.speedy = 3;
+				System.out.println(b.speed);
 			}
-			
-			//b.y+=b.speed;
+			if(score1 == 4 ) {
+				b.speed = 4;
+			}
+			else if(score2 == 4) {
+				b.speed = 4;
+			}
+			else if(score1 == 8) {
+				b.speed = 5;
+				pad1.speed = 24;
+			}
+			else if(score2 == 8) {
+				b.speed = 5;
+				pad1.speed = 24;
+			}
+			else if(score1 == 12) {
+				b.speed = 6;
+				pad1.speed = 26;
+			}
+			else if(score2 == 12) {
+				b.speed = 6;
+				pad1.speed = 26;
+			}
 		}
 		else if(b.collisionBox.intersects(pad2.collisionBox)) {
 			//System.out.println("test2");
@@ -81,22 +104,53 @@ public class ObjectManager implements ActionListener{
 			
 			if(b.getY() - pad2.getY() <= 33) {
 				b.speedy = -3;
+				System.out.println(b.speed);
 			}
 			else if(b.getY() - pad2.getY() > 33 && b.getY()-pad2.getY() <= 66) {
 				b.speedy = 0;
+				System.out.println(b.speed);
 			}
 			else {
 				b.speedy = 3;
+				System.out.println(b.speed);
+			}
+			if(score1 == 4 ) {
+				b.speed = 4;
+			}
+			else if(score2 == 4) {
+				b.speed = 4;
+			}
+			else if(score1 == 8) {
+				b.speed = 5;
+				pad2.speed = 27;
+			}
+			else if(score2 == 8) {
+				b.speed = 5;
+				pad2.speed = 27;
+			}
+			else if(score1 == 12) {
+				b.speed = 6;
+				pad2.speed = 29;
+			}
+			else if(score2 == 12) {
+				b.speed = 6;
+				pad2.speed = 29;
 			}
 		}
 		else if(b.getX() <= 0) {
 			score2++;
+			if(score2 == 16) {
+				GamePanel.setEndState();
+			}
 			b.x = 400;
 			b.y = 325;
 			b.speed = -b.speed;
 		}
 		else if(b.getX() >= 800) {
 			score1++;
+			if(score1 == 16) {
+				GamePanel.setEndState();
+			}
 			b.x = 400;
 			b.y = 325;
 			b.speed = -b.speed;

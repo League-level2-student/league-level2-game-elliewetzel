@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener{
-	final int MENU = 0;
-	final int GAME = 1;
-	final int END = 2;
-	int currentState = MENU;
+	final static int MENU = 0;
+	final static int GAME = 1;
+	final static int END = 2;
+	 static int currentState = MENU;
 	Font titleFont;
 	Font enter;
 	Font instruction;
@@ -25,6 +25,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Font over3;
 	Font over4;
 	Font over5;
+	Font score1;
+	Font score2;
 	Timer frameDraw;	
 	/*Ball ball = new Ball(250, 500, 20, 20);
 	Paddle1 paddle1 = new Paddle1(6, 320, 10, 100);
@@ -33,6 +35,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
+	
+	static void setEndState() {
+		currentState = END;
+	}
 	
 	void loadImage(String imageFile) {
         if (needImage) {
@@ -56,6 +62,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		frameDraw = new Timer(1000/60, this);
 		frameDraw.start();
 		over5 = new Font("Arial", Font.BOLD, 24);
+		score1 = new Font("Arial", Font.PLAIN, 18);
+		score2 = new Font("Arial", Font.PLAIN, 18);
 	}
 	void updateMenuState() {	}
 	void updateGameState() {
@@ -83,7 +91,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.fillRect(400, 0, 5, Pong.HEIGHT-1);
 		//System.out.println(ball.speed);
 		manager.draw(g);
-		
+		g.setFont(score1);
+		g.setColor(Color.BLACK);
+		g.drawString("Player 1: " + manager.score1, 350, 600);
+		g.setFont(score2);
+		g.setColor(Color.BLACK);
+		g.drawString("Player 2: " + manager.score2, 450, 600);
 	}
 	void drawEndState(Graphics g)  { 
 		g.setColor(Color.black);
