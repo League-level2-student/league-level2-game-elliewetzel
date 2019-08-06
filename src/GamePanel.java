@@ -28,9 +28,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 	Font score1;
 	Font score2;
 	Timer frameDraw;	
-	/*Ball ball = new Ball(250, 500, 20, 20);
-	Paddle1 paddle1 = new Paddle1(6, 320, 10, 100);
-	Paddle2 paddle2 = new Paddle2(787, 320, 10, 100);*/
+	
 	ObjectManager manager = new ObjectManager();
 	public static BufferedImage image;
 	public static boolean needImage = true;
@@ -89,7 +87,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.fillRect(0, 0, Pong.WIDTH, Pong.HEIGHT);
 		g.setColor(Color.WHITE);
 		g.fillRect(400, 0, 5, Pong.HEIGHT-1);
-		//System.out.println(ball.speed);
 		manager.draw(g);
 		g.setFont(score1);
 		g.setColor(Color.BLACK);
@@ -136,14 +133,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		}else if(currentState == END){
 		    updateEndState();
 		}
-		//System.out.println("action");
 		repaint();
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -160,7 +155,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 			}
 			else if(currentState == END) {
 				currentState = MENU;
-				//make new objects
 				manager.pad1 = new Paddle1(5, 320, 10, 100);
 				manager.pad2 = new Paddle2(788, 320, 10, 100);
 				manager.b = new Ball(250, 500, 20, 20);

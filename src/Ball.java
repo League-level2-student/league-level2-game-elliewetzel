@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Ball extends GameObject{
+public class Ball extends GameObject implements ActionListener{
 	int speedy = 0;
+	boolean paused = false;
 	public Ball(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
@@ -15,7 +18,6 @@ public class Ball extends GameObject{
 	public int getX() {
 		return x;
 	}
-	 /*need to put in speed increments depending on score, and if someone reaches 16 points make it game over*/
 	
 	public int getY() {
 		return y;
@@ -36,21 +38,23 @@ public class Ball extends GameObject{
 	
 	
 	void direction() {
-		//x-=speed;
-		/*if(x<=0) {
-			speed = -speed;
 		}
-			if(x>=800) {
-				speed = -speed;
-			}
-*/	}
 	
 	public void update() {
-		
-	//need something?
+		if(!paused) {
 		x+=speed;
 		y+=speedy;
 		
-		super.update();
+		super.update();}
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(paused) {
+			paused = false;
+		}
+		
 	}
 }

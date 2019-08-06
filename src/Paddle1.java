@@ -7,7 +7,7 @@ public class Paddle1 extends GameObject{
 		super(x, y, width, height);
 		
 		// TODO Auto-generated constructor stub
-		speed = 20;
+		speed = 21;
 		
 	}
 	
