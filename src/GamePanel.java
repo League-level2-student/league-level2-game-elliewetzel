@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		g.drawString("Pong",340, 144);
 		g.setFont(instruction);
 		g.setColor(Color.white);
-		g.drawString("Reach 16 points by returning the ball each time using the paddles.", 70, 500);
+		g.drawString("Press the space bar for instructions.", 230, 500);
 		g.setFont(enter);
 		g.setColor(Color.white);
 		g.drawString("Press Enter to play.", 300, 320);
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		manager.draw(g);
 		g.setFont(score1);
 		g.setColor(Color.BLACK);
-		g.drawString("Player 1: " + manager.score1, 350, 600);
+		g.drawString("Player 1: " + manager.score1, 250, 600);
 		g.setFont(score2);
 		g.setColor(Color.BLACK);
 		g.drawString("Player 2: " + manager.score2, 450, 600);
@@ -192,6 +192,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 		else if(e.getKeyCode() == KeyEvent.VK_S) {
 			System.out.println("DOWN");
 			manager.paddle2DOWN();
+		}
+		else if(e.getKeyCode()== KeyEvent.VK_SPACE) {
+			JOptionPane.showMessageDialog(null, "Pong is a game to 16.  Every 4 points a player gets, the speed of the ball will increase.  "
+					+ "Player 1 uses the 'up' and 'down' arrow keys, and Player 2 uses the 's' and 'w' keys to control the paddle."
+					+ "  Player 1's paddle is on the left of the screen, Player 2's paddle is on the right."); 
 		}
 		
 	}

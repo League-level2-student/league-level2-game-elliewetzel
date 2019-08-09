@@ -107,6 +107,7 @@ public class ObjectManager implements ActionListener{
 			score2++;
 			if(score2 == 16) {
 				GamePanel.setEndState();
+				playSound("gameover.wav");
 			}
 			b.x = 400;
 			b.y = 325;
@@ -118,6 +119,7 @@ public class ObjectManager implements ActionListener{
 			score1++;
 			if(score1 == 16) {
 				GamePanel.setEndState();
+				playSound("gameover.wav");
 			}
 			b.x = 400;
 			b.y = 325;
