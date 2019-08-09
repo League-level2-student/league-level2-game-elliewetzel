@@ -13,6 +13,7 @@ public class ObjectManager implements ActionListener{
 	int score1 = 0;
 	int score2 = 0;
 	Timer cube;
+	int collisionDelay = 0;
 	public int getScore1() {
 		return score1;
 	}
@@ -27,12 +28,19 @@ public class ObjectManager implements ActionListener{
 	}
 	public void update() {
 		b.update();
-		checkCollision();
+		if(collisionDelay == 0) {
+			checkCollision();
+		}
+		else {
+			collisionDelay--;
+		}
+		
 	}
 	void draw(Graphics g) {
 		pad1.draw(g);
 		pad2.draw(g);
 		b.draw(g);
+		
 	}
 	public void paddle1UP() {
 		pad1.up();
@@ -47,7 +55,7 @@ public class ObjectManager implements ActionListener{
 		pad2.down();
 	}
 	void checkCollision() {
-		if(b.collisionBox.intersects(pad1.collisionBox)) {
+		if(b.collisionBox.intersects(pad1.collisionBox)) { collisionDelay = 10;
 			b.speed = Math.abs(b.speed);
 			playSound("PongBlip.wav");
 			System.out.println(b.getY()-pad1.getY());
@@ -56,7 +64,7 @@ public class ObjectManager implements ActionListener{
 				b.speedy = -3;
 				System.out.println(b.speed);
 			}
-			else if(b.getY() - pad1.getY() > 33 && b.getY()-pad1.getY() <= 66) {
+			else if(b.getY() - pad1.getY() > 33 && b.getY()-pad1.getY() <= 63) {
 				b.speedy = 0;
 				System.out.println(b.speed);
 			}
@@ -65,25 +73,26 @@ public class ObjectManager implements ActionListener{
 				System.out.println(b.speed);
 			}
 			if(score1 == 4 || score2 == 4) {
-				b.speed = 3;
+				b.speed = 4;
+				pad1.speed = 32;
 			}
 			else if(score1 == 8 || score2 == 8) {
-				b.speed = 4;
-				pad1.speed = 27;
+				b.speed = 5;
+				pad1.speed = 36;
 			}
 			else if(score1 == 12 || score2 == 12) {
-				b.speed = 5;
-				pad1.speed = 29;
+				b.speed = 6;
+				pad1.speed = 38;
 			}
 		}
-		else if(b.collisionBox.intersects(pad2.collisionBox)) {
+		else if(b.collisionBox.intersects(pad2.collisionBox)) { collisionDelay = 10;
 			b.speed = -(Math.abs(b.speed));
 			playSound("PongBlip.wav");
 			if(b.getY() - pad2.getY() <= 33) {
 				b.speedy = -3;
 				System.out.println(b.speed);
 			}
-			else if(b.getY() - pad2.getY() > 33 && b.getY()-pad2.getY() <= 66) {
+			else if(b.getY() - pad2.getY() > 33 && b.getY()-pad2.getY() <= 63) {
 				b.speedy = 0;
 				System.out.println(b.speed);
 			}
@@ -92,15 +101,16 @@ public class ObjectManager implements ActionListener{
 				System.out.println(b.speed);
 			}
 			if(score1 == 4 || score2 == 4) {
-				b.speed = 3;
-			}
-			else if(score1 == 8 || score2 == 8) {
 				b.speed = 4;
-				pad2.speed = 30;
+				pad2.speed = 32;
+			}
+			else if(score1 == 7 || score2 == 7) {
+				b.speed = 5;
+				pad2.speed = 36;
 			}
 			else if(score1 == 12 || score2 == 12) {
-				b.speed = 5;
-				pad2.speed = 32;
+				b.speed = 6;
+				pad2.speed = 38;
 			}
 		}
 		else if(b.getX() <= 0) {
