@@ -194,11 +194,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
 			manager.paddle2DOWN();
 		}
 		else if(e.getKeyCode()== KeyEvent.VK_SPACE) {
-			JOptionPane.showMessageDialog(null, "Pong is a game to 16.  Every 4 points a player gets, the speed of the ball will increase.  "
-					+ "Player 1 uses the 'up' and 'down' arrow keys, and Player 2 uses the 's' and 'w' keys to control the paddle."
-					+ "  Player 1's paddle is on the left of the screen, Player 2's paddle is on the right."); 
-		}
-		
+			JOptionPane.showMessageDialog(null, "Pong is a game to 16.");
+			JOptionPane.showMessageDialog(null, "Player 1 uses the 8 and 5 keys on the number pad to move the paddle on the left.");
+			JOptionPane.showMessageDialog(null, "Player 2 uses the 'w' and 's' keys to move the paddle on the right.");
+		}		
 	}
 
 	@Override
